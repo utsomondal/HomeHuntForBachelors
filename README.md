@@ -1,4 +1,4 @@
-# HomeHunt
+# HomeHunt for Bachelors
 
 HomeHunt is a modern property listing platform designed for bachelors. It is a university project for **Software Engineering & System Analysis & Design** at the **World University of Bangladesh (CSE, 8th semester).**
 
