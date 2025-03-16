@@ -47,7 +47,7 @@ HomeHunt/
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/homehunt.git
+   git clone https://github.com/yourusername/HomeHuntForBachelors.git
    ```
 2. Navigate to the project folder:
    ```sh
