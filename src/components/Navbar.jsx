@@ -3,7 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import supabase from "../supabase.js";
 import logo from "../assets/HomeHunt_res.png";
 import { toast, ToastContainer, Bounce } from "react-toastify";
-import avater from '../assets/default-avater.png'
+import avater from "../assets/default-avater.png";
+import "../App.css";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -122,20 +123,37 @@ const Navbar = () => {
           {/* Authentication Section */}
           <div className="flex items-center gap-4">
             {user ? (
-              <div className="relative pt-1">
-                <button onClick={() => setMenuOpen(!menuOpen)}>
+              <div className="relative">
+                <button
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="relative w-14 h-14"
+                >
+                  {/* Animated Gradient Border */}
+                  <div
+                    className={`absolute inset-0 w-full h-full rounded-full p-[3px] bg-gradient-to-r 
+                  from-blue-500 via-purple-500 to-pink-500 animate-gradient 
+                  transition-all duration-300 ${
+                    menuOpen
+                      ? "opacity-100 scale-110 -left-1"
+                      : "opacity-0"
+                  }`}
+                  ></div>
+
+                  {/* Avatar */}
                   <img
                     src={avater}
                     alt="Avatar"
-                    className="w-12 h-12 rounded-full cursor-pointer"
+                    className="w-12 h-12 rounded-full cursor-pointer bg-white relative z-10 border-none"
                   />
                 </button>
+
+                {/* Dropdown Menu */}
                 {menuOpen && (
-                  <div className="absolute right-0 mt-3 w-max bg-gray-100 shadow-lg rounded-lg p-4">
-                    <p className="text-sm text-gray-700">{user.email}</p>
+                  <div className="absolute right-0 top-15 w-52 bg-white shadow-lg rounded-lg p-4 border border-gray-300 z-20">
+                    <p className="text-sm text-gray-800">{user.email}</p>
                     <button
                       onClick={handleLogout}
-                      className="text-red-500 block py-1 hover:text-red-600 font-medium cursor-pointer hover:underline"
+                      className="text-red-500 font-medium mt-2 hover:text-red-600 hover:underline transition"
                     >
                       Logout
                     </button>

@@ -81,7 +81,7 @@ const BrowseProperties = () => {
         }`}
       >
         {/* Left Side - Filters */}
-        <div className="w-[20%] bg-white shadow-lg p-6">
+        <div className="w-[20%] bg-white border-r border-r-[#dee2e6] p-6">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Filters</h2>
 
           <div className="mb-4">
@@ -198,7 +198,7 @@ const BrowseProperties = () => {
         </div>
 
         {/* Right Side - Properties Grid */}
-        <div className="w-[80%] p-6">
+        <div className="w-[80%] p-6 bg-[#f3f0e8]">
           <div className="mb-6">
             <div className="relative">
               <input
@@ -310,9 +310,9 @@ const BrowseProperties = () => {
             {/* Close Button */}
             <button
               onClick={() => setModalProperty(null)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition-colors duration-200 cursor-pointer shadow-2xl"
             >
-              <IoClose className="text-4xl bg-red-500 hover:bg-red-600 rounded-full text-white shadow-2xl" />
+              <IoClose className="text-4xl bg-red-500 hover:bg-red-600 rounded-full text-white border-2 border-white" />
             </button>
 
             {/* Property Image with Rounded Corners and Shadow */}
@@ -325,77 +325,76 @@ const BrowseProperties = () => {
             </div>
 
             {/* Property Details */}
-            <div className="px-4 pb-4">
-              <div className="flex justify-between items-center">
-                <h2 className="text-3xl font-semibold text-gray-900 mb-2">
+            <div className="p-4 space-y-4">
+              {/* Title and Published Date */}
+              <div className="flex justify-between items-center text-sm">
+                <h2 className="text-xl font-semibold text-gray-900">
                   {modalProperty.title}
                 </h2>
-                <p className="text-gray-600 text-sm">
-                  📅 <span className="font-medium">Published on: </span>
-                  {new Date(modalProperty.created_at).toLocaleString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: true,
-                  })}
+                <div className="bg-gray-200 rounded-full py-1 px-2 absolute top-2 left-2 text-[12px]">
+                  <span className="font-semibold text-gray-800">
+                    Published:
+                  </span>{" "}
+                  {new Date(modalProperty.created_at).toLocaleDateString()}
+                </div>
+              </div>
+
+              {/* Key Items */}
+              <div className="bg-blue-50 rounded-md p-3 grid grid-cols-2 gap-2 text-sm">
+                <div>
+                  <span className="font-semibold">Location:</span>{" "}
+                  {modalProperty.location}
+                </div>
+                <div>
+                  <span className="font-semibold">Rent:</span>{" "}
+                  {modalProperty.price} BDT/month
+                </div>
+                <div>
+                  <span className="font-semibold">Gender:</span>{" "}
+                  {modalProperty.gender}
+                </div>
+                <div>
+                  <span className="font-semibold">Type:</span>{" "}
+                  {modalProperty.type}
+                </div>
+              </div>
+
+              {/* Description */}
+              <div className="bg-gray-50 rounded-md p-3">
+                <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                  Description:
+                </h3>
+                <p className="text-gray-700 text-sm">
+                  {modalProperty.description}
                 </p>
               </div>
 
-              <div className="font-medium flex justify-start items-center gap-3 border-b border-b-gray-200 py-3">
-                <div className="flex items-center">
-                  <span className="text-gray-700">
-                    Location: {modalProperty.location}
-                  </span>
+              {/* Owner Details */}
+              <div className="bg-blue-100 rounded-md p-3 grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
+                <div>
+                  <span className="font-semibold">Name:</span>{" "}
+                  {modalProperty.owner_name}
                 </div>
-                <div className="flex items-center">
-                  <span className="text-gray-700">
-                    Rent: {modalProperty.price} BDT/month
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-gray-700">
-                    Gender: {modalProperty.gender}
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-gray-700">
-                    Type: {modalProperty.type}
-                  </span>
-                </div>
-              </div>
-
-              <div className="py-3 border-b border-b-gray-200">
-                <h2 className="text-lg font-semibold text-gray-700">
-                  Description:
-                </h2>
-                <p className="text-gray-700">{modalProperty.description}</p>
-              </div>
-
-              <div className="py-3">
-                <h3 className="text-lg font-semibold text-gray-700">
-                  Owner Details:
-                </h3>
-                <p>Name: {modalProperty.owner_name}</p>
-                <p>
-                  Email:{" "}
+                <div>
+                  <span className="font-semibold">Email:</span>
                   <a
                     href={`mailto:${modalProperty.owner_email}`}
                     className="text-blue-600 underline"
                   >
+                    {" "}
                     {modalProperty.owner_email}
                   </a>
-                </p>
-                <p>
-                  Mobile:{" "}
+                </div>
+                <div>
+                  <span className="font-semibold">Mobile:</span>
                   <a
                     href={`tel:${modalProperty.owner_phone}`}
                     className="text-blue-600 underline"
                   >
+                    {" "}
                     +88{modalProperty.owner_phone}
                   </a>
-                </p>
+                </div>
               </div>
             </div>
           </div>
