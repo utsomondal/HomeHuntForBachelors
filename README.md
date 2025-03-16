@@ -1,12 +1,106 @@
-# React + Vite
+# HomeHunt
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+HomeHunt is a modern property listing platform designed for bachelors. It is a university project for **Software Engineering & System Analysis & Design** at the **World University of Bangladesh (CSE, 8th semester).**
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication**: Secure login and signup using Supabase authentication.
+- **Property Listings**: Users can browse properties with filtering and search functionality.
+- **Post & Manage Listings**: Users can post properties and manage them through the dashboard.
+- **Modern UI**: Built with React, Tailwind CSS, and Framer Motion for smooth animations.
+- **Supabase Backend**: PostgreSQL database and Supabase Storage for image uploads.
+- **Infinite Scroll**: Efficient browsing experience for property listings.
+- **Hosted on Firebase**: Deployed for seamless performance and reliability.
 
-## Expanding the ESLint configuration
+## Target Audience
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+HomeHunt is specifically designed for **bachelors** looking for rental properties such as shared flats, single rooms, and sublets. The platform aims to simplify property searching for students and working professionals who need affordable and convenient accommodations.
+
+## Tech Stack
+
+- **Frontend**: React 19 (Vite), Tailwind CSS 4, React Router DOM 7, Framer Motion
+- **Backend**: Supabase (PostgreSQL, Storage, Authentication)
+- **Icons & UI Enhancements**: React Icons, React Toastify
+- **Development Tools**: Vite, ESLint
+- **Hosting**: Firebase
+
+## Project Structure
+
+```
+HomeHunt/
+│── src/
+│   ├── assets/            # Images and static assets
+│   ├── components/        # Reusable React components (Navbar, Footer, PropertyModal)
+│   ├── pages/             # Main pages (Home, Browse, Login, PostProperty, Signup)
+│── public/
+│── App.jsx                # Main React component
+│── main.jsx               # React entry point
+│── supabase.js            # Supabase integration
+│── tailwind.config.js     # Tailwind CSS configuration
+│── vite.config.js         # Vite configuration
+│── .env.local             # Environment variables
+│── .gitignore             # Git ignore file
+│── README.md              # Project documentation
+```
+
+## Installation & Setup
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/homehunt.git
+   ```
+2. Navigate to the project folder:
+   ```sh
+   cd homehunt
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Set up Supabase:
+   - Create a Supabase project and get API keys.
+   - Configure `supabase.js` with the required credentials.
+5. Start the development server:
+   ```sh
+   npm run dev
+   ```
+6. Deploy to Firebase:
+   - Install Firebase CLI if not already installed:
+     ```sh
+     npm install -g firebase-tools
+     ```
+   - Login to Firebase:
+     ```sh
+     firebase login
+     ```
+   - Initialize Firebase in the project:
+     ```sh
+     firebase init
+     ```
+   - Deploy the project:
+     ```sh
+     firebase deploy
+     ```
+
+## Project Management
+
+- **Development Stages**:
+  - Requirement analysis & planning 
+  - UI/UX design 
+  - Database design 
+  - Development & Testing 
+  - Deployment & User Testing 
+  - Future Enhancements (Ongoing) 
+
+- **Team Members**:
+  - This project is developed as part of a university coursework by students of the **World University of Bangladesh (CSE, 8th semester).**
+
+## Scripts
+
+```sh
+npm run dev       # Start the development server  
+npm run build     # Build for production  
+npm run preview   # Preview the production build  
+npm run lint      # Run ESLint  
+```
+
