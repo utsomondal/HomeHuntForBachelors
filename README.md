@@ -82,9 +82,24 @@ HomeHunt/
      firebase deploy
      ```
 
+## Software Engineering & System Analysis & Design Contributions
+
+- **Requirement Analysis**: Conducted surveys and research to define user needs.
+- **System Design**:
+  - **Use Case Diagrams**: Designed use cases to model system interactions.
+  - **ER Diagrams**: Developed entity-relationship diagrams for the database structure.
+  - **Class Diagrams**: Modeled software components and their relationships.
+- **Software Development Life Cycle (SDLC)**:
+  - Followed Agile methodologies for iterative development.
+  - Implemented feature-driven development (FDD) for modular implementation.
+- **Testing & Validation**:
+  - Conducted unit testing for core functionalities.
+  - Performed usability testing with users for feedback and improvements.
+
 ## Project Management
 
 - **Development Stages**:
+
   - Requirement analysis & planning 
   - UI/UX design 
   - Database design 
@@ -92,8 +107,10 @@ HomeHunt/
   - Deployment & User Testing 
   - Future Enhancements (Ongoing) 
 
-- **Team Members**:
-  - This project is developed as part of a university coursework by students of the **World University of Bangladesh (CSE, 8th semester).**
+- **Project Contribution**:
+
+  - This project was developed as part of the Software Engineering & System Analysis & Design coursework at the **World University of Bangladesh (CSE, 8th semester).**
+  - Key responsibilities include **frontend & backend development, system design, and database integration.**
 
 ## Scripts
 
