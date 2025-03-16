@@ -30,7 +30,7 @@ HomeHunt is specifically designed for **bachelors** looking for rental propertie
 HomeHunt/
 │── src/
 │   ├── assets/            # Images and static assets
-│   ├── components/        # Reusable React components (Navbar, Footer, PropertyModal)
+│   ├── components/        # Reusable React components (Navbar, Footer)
 │   ├── pages/             # Main pages (Home, Browse, Login, PostProperty, Signup)
 │── public/
 │── App.jsx                # Main React component
