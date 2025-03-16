@@ -59,7 +59,7 @@ const Signup = () => {
         theme: "colored",
         transition: Bounce,
       });
-      setTimeout(() => navigate("/"), 2000);
+      setTimeout(() => navigate("/login"), 2000);
     }
 
     setLoading(false);

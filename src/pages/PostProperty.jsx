@@ -19,7 +19,17 @@ const PostProperty = () => {
       if (user) {
         setUserId(user.id);
       } else {
-        toast.error("User not authenticated! Please log in.");
+        toast.error("User not authenticated! Please log in.", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        });
       }
     };
     fetchUser();
@@ -58,7 +68,17 @@ const PostProperty = () => {
 
   const handleNextStep = () => {
     if (!owner.name || !owner.email || !owner.phone) {
-      toast.error("Please complete Step 1 before proceeding!");
+      toast.error("Please complete Step 1 before proceeding!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
       return;
     }
     setStep(2);
@@ -67,7 +87,17 @@ const PostProperty = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!userId) {
-      toast.error("Authentication error! Please log in again.");
+      toast.error("Authentication error! Please log in again.", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
       return;
     }
 
@@ -79,7 +109,17 @@ const PostProperty = () => {
       !property.price ||
       !property.gender
     ) {
-      toast.error("All fields in Step 2 are required!");
+      toast.error("All fields in Step 2 are required!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
       return;
     }
 
@@ -92,7 +132,17 @@ const PostProperty = () => {
         .upload(`property-${Date.now()}`, property.image);
 
       if (error) {
-        toast.error("Image upload failed!");
+        toast.error("Image upload failed!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        });
         setLoading(false);
         return;
       }
@@ -119,9 +169,29 @@ const PostProperty = () => {
     setLoading(false);
 
     if (error) {
-      toast.error("Failed to post property! Please check your details.");
+      toast.error("Failed to post property! Please check your details.", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     } else {
-      toast.success("Property posted successfully!");
+      toast.success("Property posted successfully!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
       setTimeout(() => navigate("/browse"), 2000);
     }
   };
@@ -251,6 +321,17 @@ const PostProperty = () => {
                 onChange={handleImageChange}
                 className="w-full p-3 border rounded"
               />
+              {/* back btn start */}
+              {step === 2 && (
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="w-full bg-gray-500 text-white p-3 rounded hover:bg-gray-600"
+                >
+                  Back
+                </button>
+              )}
+              {/* back btn endd */}
               <button
                 type="submit"
                 disabled={loading}
@@ -352,8 +433,8 @@ const PostProperty = () => {
         position="bottom-right"
         autoClose={2000}
         hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
+        closeOnClick={true}
+        pauseOnHover={true}
         draggable={false}
         theme="colored"
         transition={Bounce}

@@ -11,20 +11,39 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  // Fetch user session
   useEffect(() => {
     const fetchUser = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      setUser(session?.user || null);
+      const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        console.error("Error fetching user:", error);
+        return;
+      }
+      setUser(data?.user || null);
     };
 
     fetchUser();
-    supabase.auth.onAuthStateChange((_event, session) => {
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
     });
+
+    return () => authListener.subscription.unsubscribe();
   }, []);
 
+  // Handle clicking outside the menu
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (!event.target.closest(".profile-menu") && menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [menuOpen]);
+
+  // Handle logout
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(null);
@@ -52,14 +71,14 @@ const Navbar = () => {
         newestOnTop={false}
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
+        pauseOnFocusLoss={true}
         draggable={false}
-        pauseOnHover
+        pauseOnHover={true}
         theme="colored"
         transition={Bounce}
       />
       <nav className="bg-white shadow-md w-full z-[999] sticky top-0">
-        <div className="container mx-auto flex items-center justify-between py-3 ">
+        <div className="container mx-auto flex items-center justify-between py-3">
           {/* Logo */}
           <NavLink to="/">
             <img src={logo} alt="HomeHunt Logo" className="w-[150px]" />
@@ -84,22 +103,19 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   isActive ? "text-blue-600 font-bold" : "hover:text-blue-600"
                 }
-                end
               >
                 Browse Properties
               </NavLink>
             </li>
             <li>
               <NavLink
-                to={user ? "/post-property" : "/login"}
+                to={user ? "/post-property" : "#"}
                 className={({ isActive }) =>
-                  isActive && user
-                    ? "text-blue-600 font-bold"
-                    : "hover:text-blue-600"
+                  isActive && user ? "text-blue-600 font-bold" : "hover:text-blue-600"
                 }
-                end
-                onClick={() => {
+                onClick={(e) => {
                   if (!user) {
+                    e.preventDefault();
                     toast.error("You must log in before posting an ad!", {
                       position: "bottom-right",
                       autoClose: 2000,
@@ -111,7 +127,8 @@ const Navbar = () => {
                       theme: "colored",
                       transition: Bounce,
                     });
-                    navigate("/login");
+
+                    setTimeout(() => navigate("/login"), 1000);
                   }
                 }}
               >
@@ -123,7 +140,7 @@ const Navbar = () => {
           {/* Authentication Section */}
           <div className="flex items-center gap-4">
             {user ? (
-              <div className="relative">
+              <div className="relative profile-menu">
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
                   className="relative w-14 h-14"
@@ -131,12 +148,9 @@ const Navbar = () => {
                   {/* Animated Gradient Border */}
                   <div
                     className={`absolute inset-0 w-full h-full rounded-full p-[3px] bg-gradient-to-r 
-                  from-blue-500 via-purple-500 to-pink-500 animate-gradient 
-                  transition-all duration-300 ${
-                    menuOpen
-                      ? "opacity-100 scale-110 -left-1"
-                      : "opacity-0"
-                  }`}
+                    from-blue-500 via-purple-500 to-pink-500 animate-gradient 
+                    transition-all duration-300
+                    ${menuOpen ? "scale-110 -left-1 opacity-100 " : "opacity-0"}`}
                   ></div>
 
                   {/* Avatar */}
@@ -167,14 +181,12 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     isActive ? "text-blue-600 underline" : "hover:text-blue-600"
                   }
-                  end
                 >
                   Login
                 </NavLink>
                 <NavLink
                   to="/signup"
                   className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                  end
                 >
                   Sign Up
                 </NavLink>
